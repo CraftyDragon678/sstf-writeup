@@ -65,5 +65,50 @@ public boolean a(String str) {
     }
 }
 ```
-[`b.c.a.c.d`](src/vault101/c.java)
+[`b.c.a.c.d`](src/vault101/c.java)는 난독화 된 것을 푸는 것으로 보인다.
+설마 이걸 해석하겠다고??? 절대 안 할거다. 절대 절대 절대
+
+그냥 한 가지 알아둘 것은 statc으로 f823a라는 변수가 있는데,
+[`VaultApplication`](src/vault101/VaultApplication.java)에서 1로 초기화 된다는 것이다.
+
+
+자바 어플리케이션을 만들어서 모든 글자를 치환해 보겠다. (그럴거면 안드 앱을 만드는 게 더... 나을 수도..는 이유가 있음)
+
+
+복호화 하는 코드는 [여기](src/vault101/decrypt.java)를 참조
+
+전부다 복호화가 잘 이루어지진 않아서 몇개는 수동으로 했다.
+복호화 된 코드는 [여기](src/vault101/VaultService%20copy.java)에 있다.
+
+
+처음 exit가 있는 곳은 flag 입력이 세번 실패하면 종료하는 코드이고,
+밑에 else 문이 실제로 체크하는 부분이다.
+
+약간 생긴 모습이 pyjail을 하는 모습과 닮았다.
+
+자바에서 리플렉트를 해봤으면 익숙한 것이다.
+
+[이것](src/vault101/VaultService%20copy%202.java)이 현재 작성된 것을 해석한 것이다.
+
+설명을 덧 붙이자면, Class.forName은 string으로부터 클래스를 가져오는 것,
+getMethod는 첫번째 인자는 메소드 이름, 두번째 인자는 메소드 인자
+invoke는 메소드(첫번째 인자를 self로), 함수 실행
+getDeclaredField는 멤버를 가져오는 것이다.
+javalang.Integer.TYPE == int이다.
+
+`b.c.a.a.b`라는 메소드를 가져오는데,
+아래에 적어두었다
+
+[원본](src/vault101/a.java), [수정](src/vault101/a%20copy.java), [해석](src/vault101/a%a%20copy%202.java)
+
+참고: cls.getDeclearFields()[0]을 하는데, 이는 f821a를 가리키고, 서비스의 `onCreate`에 의해 쓰여진다.
+
+
+리소스들을 모아보면, [strings.xml](src/vault101/strings.xml)에 magic,
+[arrays.xml](src/vault101/arrays.xml)에 kind_of_magic이다.
+
+자... 이제 필요한 것은 다 있다.
+
+플래그만 구하면 끝난다.
+
 
