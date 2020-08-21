@@ -111,4 +111,38 @@ javalang.Integer.TYPE == int이다.
 
 플래그만 구하면 끝난다.
 
+리버싱에서 플래그를 구할 때는 크게 두가지 방법이 있다.
+
+1. 무작위로 대입을 하고(어느 정도 패턴은 있음) 조건이 맞는지 확인
+2. 거꾸로 계산
+
+
+지금 매커니즘을 다 알고 있으니 두번째 방법으로 하겠다.
+
+
+다음과 같은 자바 코드로 구할 수 있다. (안드로이드에서 플래그를 구할 때는 파이썬 보단 자바가 편할 것이다... 아마도)
+
+```java
+String[] kind_of_magic = {"UEBxWw==", "Sk5xVcOICw==", "bnRX", "S0BgWw==", "Nw==", "R0ZxRMOLElk=", "TkJhWw==", "dHZHdcOl", "eWRNYQ==", "bHRSeMOi", "R05tVw==", "d2hScA==", "T0xyVMOADQ==", "f2pQ", "Q0xsVw==", "Nw=="};
+String magic = "7E3Q5fm4lBSKXaHTnlCO52VL/iY6f+hQQ35oeFphtZIu3pf0QuOEpFB5nTeg8GTx";
+byte[] bArr = new byte[kind_of_magic.length];
+for (int i = 0; i < kind_of_magic.length; i++) {
+    Base64.Decoder decoder = Base64.getDecoder();
+    bArr[i] = (byte) ((Character)c.d(new String(decoder.decode(kind_of_magic[i].getBytes())), i ^ 137).charAt(0)).charValue();
+}
+
+Base64.Decoder decoder = Base64.getDecoder();
+byte[] decoded = decoder.decode(magic);
+
+Cipher invoke = javax.crypto.Cipher.getInstance("AES/CBC/PKCS5Padding");
+SecretKeySpec newInstance = new javax.crypto.spec.SecretKeySpec(bArr, "AES");
+IvParameterSpec newInstance2 = new javax.crypto.spec.IvParameterSpec(bArr);
+invoke.init(Cipher.DECRYPT_MODE, newInstance, newInstance2);
+System.out.println(new String(invoke.doFinal(decoded)));
+```
+
+[여기](src/vault101/getFlag.java)서 전체 코드를 볼 수 있다.
+
+
+> `SCTF{53CUr17Y_7Hr0U6H_085CUr17Y_15_N07_3N0U6H}`
 
