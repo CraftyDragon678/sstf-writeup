@@ -16,6 +16,7 @@
 jadx로 까보면 아래와 같다.
 
 ![decompile](img/vault101/Decompile.png)
+
 그렇다... 난독화가 되어있다.
 
 [메니페스트](src/vault101/AndroidManifest.xml)를 읽어보면 서비스가 돌아가고 있다.
@@ -90,11 +91,12 @@ public boolean a(String str) {
 
 [이것](src/vault101/VaultService%20copy%202.java)이 현재 작성된 것을 해석한 것이다.
 
-설명을 덧 붙이자면, Class.forName은 string으로부터 클래스를 가져오는 것,
-getMethod는 첫번째 인자는 메소드 이름, 두번째 인자는 메소드 인자
-invoke는 메소드(첫번째 인자를 self로), 함수 실행
-getDeclaredField는 멤버를 가져오는 것이다.
-javalang.Integer.TYPE == int이다.
+설명을 덧 붙이자면,
+* Class.forName은 string으로부터 클래스를 가져오는 것,
+* getMethod는 첫번째 인자는 메소드 이름, 두번째 인자는 메소드 인자
+* invoke는 메소드(첫번째 인자를 self로), 함수 실행
+* getDeclaredField는 멤버를 가져오는 것이다.
+* javalang.Integer.TYPE == int이다.
 
 `b.c.a.a.b`라는 메소드를 가져오는데,
 아래에 적어두었다
@@ -106,6 +108,9 @@ javalang.Integer.TYPE == int이다.
 
 리소스들을 모아보면, [strings.xml](src/vault101/strings.xml)에 magic,
 [arrays.xml](src/vault101/arrays.xml)에 kind_of_magic이다.
+
+
+### Get Flag!!
 
 자... 이제 필요한 것은 다 있다.
 
