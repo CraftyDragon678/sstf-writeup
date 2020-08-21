@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="11" android:versionName="1.1" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" package="com.sctf2020.vault101" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="29"/>
+    <application android:theme="@style/AppTheme" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:name="com.sctf2020.vault101.VaultApplication" android:allowBackup="false" android:supportsRtl="true" android:extractNativeLibs="false" android:roundIcon="@mipmap/ic_launcher_round" android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+        <service android:name="com.sctf2020.vault101.VaultService" android:enabled="true" android:exported="true"/>
+        <activity android:name="com.sctf2020.vault101.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
